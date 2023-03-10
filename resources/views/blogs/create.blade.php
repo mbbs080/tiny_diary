@@ -11,13 +11,13 @@
 
 @section('content')
     <div class="flex item-center justify-center mt-7">
-        <form action="/blogs" method="POST">
+        <form action="/blogs" method="POST" class="px-2">
             @csrf
             <a class="flex align-center justify-center text-slate-400 underline" href="/">dashboard</a>
             <div>
                 <h2 class="font-thin text-xl flex align-center justify-center mb-5 text-slate-400">Add something here</h2>
             </div>
-            <div>
+            <div class="flex flex-col">
                 <input placeholder="title" type="text"
                     class="bg-slate-100 mt-2 p-1 rounded-md px-2 width-100 focus:outline-none" name="title"
                     value="{{ old('title') }}" />
@@ -25,7 +25,7 @@
                     <p>{{ $message }}</p>
                 @enderror
             </div>
-            <div>
+            <div class="flex flex-col">
                 <input placeholder="Add some tag" type="text"
                     class="bg-slate-100 mt-2 p-1 rounded-md px-2 focus:outline-none" name="tags"
                     value="{{ old('tags') }}" />
@@ -33,9 +33,9 @@
                     <p>{{ $message }}</p>
                 @enderror
             </div>
-            <div>
-                <textarea placeholder="Details..." rows="4" cols="40"
-                    class="textarea bg-slate-100 mt-2 border-2 rounded-md p-1 focus:outline-none" name="description"
+            <div class="flex flex-col">
+                <textarea placeholder="Details..." rows="8" cols="40"
+                    class="textarea bg-slate-100 mt-2 border-2 rounded-md p-1 focus:outline-none resize-none" name="description"
                     value="{{ old('description') }}"></textarea>
                 @error('description')
                     <p>{{ $message }}</p>
@@ -46,7 +46,7 @@
             <input type="hidden" name="date3" value={{ $date3 }} />
             <input type="hidden" name="user" value={{ $user }} />
             <div>
-                <button type="submit" class="text-slate-400 underline font-thin text-m">submit </button>
+                <button type="submit" class="text-slate-400 underline font-thin text-m mt-3">submit </button>
             </div>
 
         </form>

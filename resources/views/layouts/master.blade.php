@@ -11,7 +11,9 @@
 
 <body>
 
-    @yield('content')
+    <main class="text-slate-600">
+        @yield('content')
+    </main>
 </body>
 
 </html>

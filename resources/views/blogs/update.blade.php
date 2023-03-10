@@ -42,9 +42,8 @@
                         <p>
                             <span>{{ $blog->date3 }}</span>
                         </p>
-                        <h2 class="mt-3 bg-slate-100 rounded-md p-2">
-                            <span class="font-bold text-slate-300">{{ str_word_count($blog->description) }}
-                                words</span><br>{{ $blog->description }}
+                        <h2 class="mt-3 bg-cyan-100/20 whitespace-pre-line rounded-md p-2">
+                            {{ $blog->description }}
                         </h2>
                         <div class="flex gap-3 align-center justify-left mt-2 text-slate-500">
                             <p class="text-cyan-500 px-2 rounded-sm">

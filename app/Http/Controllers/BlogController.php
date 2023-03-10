@@ -14,7 +14,7 @@ class BlogController extends Controller
     public function index()
     {
         return view('blogs.index', [
-            'blogs' => Blog::where('user_id', Auth::id())->latest()->get()
+            'blogs' => Blog::where('user_id', Auth::id())->latest()->paginate(4)
         ]);
     }
 
