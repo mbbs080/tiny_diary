@@ -3,23 +3,29 @@
 @section('content')
     <div class="bg-white-200 justify-center align-center flex-column pt-10">
         @auth
-            <p class="flex justify-center align-center text-2xl font-thin">
-                Welcome @<b>{{ auth()->user()->name }}</b></p>
+            <div class="flex align-center flex-col md:flex-row md:gap-5 justify-center gap-3 px-5">
+                <a href="/">
+                    <h1 class="text-cyan-500 text-xl flex justify-center align-center"> Tiny Diary App... </h1>
+                </a>
+                <p class="flex justify-center align-center text-xl font-thin">
+                    Welcome @<b>{{ auth()->user()->name }}</b>
+                </p>
+            </div>
             <div class="flex justify-center align-center gap-4 mt-5 text-cyan-500">
-                <h4><a href="/blogs/create" class="underline">Create blog</a></h4>
-                <h4><a href="/update" class="underline">Update blog</a></h4>
+                <h4><a href="/blogs/create" class="underline">Create note</a></h4>
+                <h4><a href="/update" class="underline">Update note</a></h4>
                 <form method="POST" action="/logout">
                     @csrf
                     <button type="submit" class="underline">Logout</button>
                 </form>
             </div>
             <div class="flex justify-center align-center text-cyan-500 text-l text-center mt-10 bg-cyan-100 mx-2 p-1 rounded-s">
-                @if (count($blogs) > 1)
-                    <h2> >>You have created {{ count($blogs) }} Notes<< </h2>
-                        @elseif (count($blogs) == 1)
-                            <h2> >>You have created {{ count($blogs) }} Note<< </h2>
+                @if (count($notes) > 1)
+                    <h2> >>You have created {{ count($notes) }} notes<< </h2>
+                        @elseif (count($notes) == 1)
+                            <h2> >>You have created {{ count($notes) }} note<< </h2>
                                 @else
-                                    <h2> >>You have created no Note<< </h2>
+                                    <h2> >>You have created no note<< </h2>
                 @endif
             </div>
         @else
@@ -33,17 +39,28 @@
                 @auth
                     <div class="grid grid-cols-1 gap-2 md:grid-cols-2 mx-2 mb-5">
                         @foreach ($blogs as $blog)
-                            <div class="mt-5 p-3 w-100 border-t-2">
+                            <div class="mt-5 p-3 w-100 rounded-xl">
                                 <h1 class="text-xl font-thin"><span class="text-cyan-500 font-thin">Title:
-                                    </span>{{ $blog->title }}
+                                    </span class="capitalize">{{ $blog->title }}
                                 </h1>
                                 <p class="text-xs"><span>{{ $blog->date1 }}</span> <span>{{ $blog->date2 }}</span>
                                 <p>
                                 <p class="text-xs">
                                     <span>{{ $blog->date3 }}</span>
                                 </p>
-                                <h2 class="mt-3 bg-cyan-100/20 whitespace-pre-line rounded-md p-2">
-                                    <span class="font-bold text-slate-300">{{ str_word_count($blog->description) }} words</span>
+                                <ul class="mt-3 flex align-center justify-left gap-2">
+                                    <span class="text-cyan-500 text-xl font-thin">Tag:</span>
+                                    @php
+                                        $tags = explode(' ', $blog->tags);
+                                    @endphp
+                                    @foreach ($tags as $tag)
+                                        <li>
+                                            <a href="/?tag={{ $tag }}"
+                                                class="text-cyan-500 bg-cyan-100/20 rounded-md px-3">{{ $tag }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <h2 class="mt-1 bg-cyan-100/20 whitespace-pre-line rounded-md p-2 font-light text-l">
                                     {{ $blog->description }}
                                 </h2>
                             </div>

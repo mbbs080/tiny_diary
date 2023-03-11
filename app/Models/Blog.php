@@ -11,6 +11,12 @@ class Blog extends Model
 
     protected $table = 'blog';
 
+    // filter blogs
+    public function scopeFilter($query, array $filters)
+    {
+        $query->where('tags', 'like', '%' . request('tag') . '%');
+    }
+
     // Relationship to user
     public function user()
     {

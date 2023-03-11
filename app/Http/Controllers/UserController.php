@@ -8,13 +8,13 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    // Create User
+    // create user page
     public function create()
     {
         return view('users.register');
     }
 
-    // Create New User
+    // create new user
     public function store(Request $request)
     {
         $formFields = $request->validate([

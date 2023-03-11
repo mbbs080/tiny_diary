@@ -14,7 +14,8 @@ class BlogController extends Controller
     public function index()
     {
         return view('blogs.index', [
-            'blogs' => Blog::where('user_id', Auth::id())->latest()->paginate(4)
+            'blogs' => Blog::where('user_id', Auth::id())->latest()->filter(request(['tag']))->paginate(5),
+            'notes' => Blog::where('user_id', Auth::id())->get()
         ]);
     }
 
@@ -29,7 +30,7 @@ class BlogController extends Controller
     {
         $formFields = $request->validate([
             'title' => 'required',
-            'tags' => 'required',
+            'tags' => 'required|string|min:3|max:30',
             'description' => 'required',
             'date1' => 'required',
             'date2' => 'required',

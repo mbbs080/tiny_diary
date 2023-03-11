@@ -4,10 +4,10 @@
     <div class="bg-white-200 justify-center align-center flex-column pt-10">
         @auth
             <p class="flex justify-center align-center text-xl font-thin">
-                Update Blogs</p>
+                Update note</p>
             <div class="flex justify-center align-center gap-4 mt-5 text-cyan-500">
                 <h4><a href="/" class="underline">Dashboard</a></h4>
-                <h4><a href="/blogs/create" class="underline">Create blog</a></h4>
+                <h4><a href="/blogs/create" class="underline">Create note</a></h4>
                 <form method="POST" action="/logout">
                     @csrf
                     <button type="submit" class="underline">Logout</button>
@@ -17,11 +17,11 @@
             </p>
             <div class="flex justify-center align-center text-cyan-500 text-l mt-10 bg-cyan-100 mx-2 p-1 rounded-s">
                 @if (count($blogs) > 1)
-                    <h2> >>You have created {{ count($blogs) }} blogs<< </h2>
+                    <h2> >>You have created {{ count($blogs) }} notes<< </h2>
                         @elseif (count($blogs) == 1)
-                            <h2> >>You have created {{ count($blogs) }} blog<< </h2>
+                            <h2> >>You have created {{ count($blogs) }} note<< </h2>
                                 @else
-                                    <h2> >>You have created no blog<< </h2>
+                                    <h2> >>You have created no note<< </h2>
                 @endif
             </div>
         @else
@@ -34,7 +34,7 @@
         @auth
             <div class="grid grid-cols-1 gap-2 md:grid-cols-2 mx-2 mb-5">
                 @foreach ($blogs as $blog)
-                    <div class="mt-5 p-3 w-100 border-t-2">
+                    <div class="mt-5 p-3 w-100">
                         <h1 class="text-xl font-thin"><span class="text-cyan-500 font-thin">Title: </span>{{ $blog->title }}
                         </h1>
                         <p><span>{{ $blog->date1 }}</span> <span>{{ $blog->date2 }}</span>

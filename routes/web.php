@@ -37,7 +37,7 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 // Login User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
-// Login User
+// Show Update Page
 Route::get('/update', [BlogController::class, 'updatePage']);
 
 //------ Single Blog
