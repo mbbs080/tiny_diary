@@ -52,7 +52,7 @@ class UserController extends Controller
         return view('users.login');
     }
 
-    // show login form
+    // login user
     public function authenticate(Request $request)
     {
         $formFields = $request->validate([

@@ -30,7 +30,7 @@ class BlogController extends Controller
     {
         $formFields = $request->validate([
             'title' => 'required',
-            'tags' => 'required|string|min:3|max:30',
+            'tags' => 'required|string|min:3|max:35',
             'description' => 'required',
             'date1' => 'required',
             'date2' => 'required',
@@ -88,6 +88,7 @@ class BlogController extends Controller
         return redirect('/');
     }
 
+    // updating page link page
     public function updatePage()
     {
         return view('blogs.update', [
